@@ -3,15 +3,6 @@ import json
 from operator import itemgetter, attrgetter
 
 
-def prepareSentiments(sent_file):
-
-    afinnfile = open(sent_file)
-    sent_scores = {}
-    for i, sentLine in enumerate(afinnfile):
-		word, score = sentLine.split("\t") 
-		sent_scores[word.decode('utf-8')] = float(score)
-    return sent_scores
-
 def readTweets(tweet_file):
 
 	sum_terms = 0
@@ -42,12 +33,6 @@ def readTweets(tweet_file):
 	
 	for hashtag_data in top_x_items:
 		print "%s %s"%(hashtag_data[0].encode('utf-8'), str(float(hashtag_data[1])))
-
-def hw():
-    print 'Hello, world!'
-
-def lines(fp):
-    print str(len(fp.readlines()))
 
 def main():
 	tweet_file = sys.argv[1]
