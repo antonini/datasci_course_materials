@@ -11,6 +11,8 @@ def prepareSentiments(sent_file):
     return sent_scores
 
 def readTweets(sent_scores, tweet_file):
+
+	unmaped_sentiments = {}
 	tweet_file = open(tweet_file)
 	for tweet_line in tweet_file:
 		tweet_sentiment = 0.0
@@ -26,9 +28,16 @@ def readTweets(sent_scores, tweet_file):
 					tweet_sentiment += float(sent_scores[word])
 				elif word not in unscored_words:
 					unscored_words.add(word)
-				print word
-			print unscored_words
-			print tweet_sentiment
+				#print word
+			for word in unscored_words:
+				if word in unmaped_sentiments:
+					unmaped_sentiments[word] += tweet_sentiment
+				else: 
+					unmaped_sentiments[word] = tweet_sentiment
+			#print unscored_words
+			#print tweet_sentiment
+	for unmaped_sentiment, sentiment_value in unmaped_sentiments.items():
+		print "%s %s"%(unmaped_sentiment, str(sentiment_value))
 			# tweet_sentiment = search_sentiments_in_text(sent_scores, tweet_text)
 			# print "tweet_sentiment: %s, tweet_text: %s"%(str(tweet_sentiment), tweet_text)
 	# print sent_scores

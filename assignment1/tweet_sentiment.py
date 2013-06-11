@@ -21,8 +21,8 @@ def readTweets(sent_scores, tweet_file):
 		if 'text' in tweet_json:
 			tweet_text = tweet_json['text'].encode('utf-8').lower()
 
-			print tweet_text
-			
+			# print tweet_text
+
 			tweet_sentiment = search_sentiments_in_text(sent_scores, tweet_text)
 			# print "tweet_sentiment: %s, tweet_text: %s"%(str(tweet_sentiment), tweet_text)
 			
@@ -40,7 +40,7 @@ def search_sentiment_in_text(sentiment, tweet_text):
 	term_count = tweet_text.count(term)
 	total_sentiment = term_count * score
 	if term_count > 0:
-	    print "%s:%s" %(term, total_sentiment)
+	    print "%s %s" %(term, total_sentiment)
 	return total_sentiment
 
 
